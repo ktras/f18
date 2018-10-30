@@ -25,11 +25,16 @@
 #include <set>
 #include <string>
 
+namespace Fortran::fir {
+class ControlFlowAnalyzer;
+}
+
 namespace Fortran::semantics {
 
 using namespace parser::literals;
 
 class Scope {
+  friend fir::ControlFlowAnalyzer;
   using mapType = std::map<SourceName, Symbol *>;
 
 public:
