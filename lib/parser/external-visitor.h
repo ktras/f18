@@ -1,0 +1,38 @@
+// Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+#ifndef FORTRAN_FORTRAN_BUILDER_EXTERNAL_VISITOR_H_
+#define FORTRAN_FORTRAN_BUILDER_EXTERNAL_VISITOR_H_
+
+#include "char-block.h"
+#include "characters.h"
+#include <functional>
+#include <iosfwd>
+
+namespace Fortran::builder {
+
+struct Program;
+
+// A function called before each Statement is unparsed.
+using preStatementType =
+    std::function<void(const CharBlock &, std::ostream &, int)>;
+
+// Transform parsed program to an external construct.
+//   - for now send results to an std::ostream
+//
+void ExternalVisit(std::ostream &out, const Program &program,
+    preStatementType *preStatement = nullptr);
+}
+
+#endif
