@@ -543,13 +543,18 @@ public:
   }
   void Post(const AssumedRankSpec &) { Put(".."); }  // R825
   void Post(const Asynchronous &) { Word("ASYNCHRONOUS"); }
+  void Post(const Device &) { Word("DEVICE"); }
   void Post(const External &) { Word("EXTERNAL"); }
   void Post(const Intrinsic &) { Word("INTRINSIC"); }
+  void Post(const Managed &) { Word("MANAGED"); }
   void Post(const Optional &) { Word("OPTIONAL"); }
   void Post(const Parameter &) { Word("PARAMETER"); }
+  void Post(const Pinned &) { Word("PINNED"); }
   void Post(const Protected &) { Word("PROTECTED"); }
   void Post(const Save &) { Word("SAVE"); }
+  void Post(const Shared &) { Word("SHARED"); }
   void Post(const Target &) { Word("TARGET"); }
+  void Post(const Texture &) { Word("TEXTURE"); }
   void Post(const Value &) { Word("VALUE"); }
   void Post(const Volatile &) { Word("VOLATILE"); }
   void Unparse(const IntentSpec &x) {  // R826

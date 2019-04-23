@@ -1287,21 +1287,30 @@ struct IntentSpec {
 //        DIMENSION ( array-spec ) | EXTERNAL | INTENT ( intent-spec ) |
 //        INTRINSIC | language-binding-spec | OPTIONAL | PARAMETER | POINTER |
 //        PROTECTED | SAVE | TARGET | VALUE | VOLATILE
+//
+//    CUDA fortran
+//      DEVICE | MANAGED | SHARED | PINNED | TEXTURE
 EMPTY_CLASS(Asynchronous);
+EMPTY_CLASS(Device);
 EMPTY_CLASS(External);
 EMPTY_CLASS(Intrinsic);
+EMPTY_CLASS(Managed);
 EMPTY_CLASS(Optional);
 EMPTY_CLASS(Parameter);
+EMPTY_CLASS(Pinned);
 EMPTY_CLASS(Protected);
 EMPTY_CLASS(Save);
+EMPTY_CLASS(Shared);
 EMPTY_CLASS(Target);
+EMPTY_CLASS(Texture);
 EMPTY_CLASS(Value);
 EMPTY_CLASS(Volatile);
 struct AttrSpec {
   UNION_CLASS_BOILERPLATE(AttrSpec);
-  std::variant<AccessSpec, Allocatable, Asynchronous, CoarraySpec, Contiguous,
-      ArraySpec, External, IntentSpec, Intrinsic, LanguageBindingSpec, Optional,
-      Parameter, Pointer, Protected, Save, Target, Value, Volatile>
+  std::variant<AccessSpec, Allocatable, Asynchronous, CoarraySpec,
+      Contiguous, ArraySpec, Device, External, IntentSpec, Intrinsic,
+      LanguageBindingSpec, Managed, Optional, Parameter, Pinned, Pointer,
+      Protected, Save, Shared, Target, Texture, Value, Volatile>
       u;
 };
 

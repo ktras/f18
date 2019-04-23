@@ -1024,6 +1024,9 @@ TYPE_PARSER(
 //        DIMENSION ( array-spec ) | EXTERNAL | INTENT ( intent-spec ) |
 //        INTRINSIC | language-binding-spec | OPTIONAL | PARAMETER | POINTER |
 //        PROTECTED | SAVE | TARGET | VALUE | VOLATILE
+//
+//    CUDA fortran
+//      DEVICE | MANAGED | SHARED | PINNED | TEXTURE
 constexpr auto optional{construct<Optional>("OPTIONAL"_tok)};
 constexpr auto protectedAttr{construct<Protected>("PROTECTED"_tok)};
 constexpr auto save{construct<Save>("SAVE"_tok)};
@@ -1032,15 +1035,20 @@ TYPE_PARSER(construct<AttrSpec>(accessSpec) ||
     construct<AttrSpec>(construct<Asynchronous>("ASYNCHRONOUS"_tok)) ||
     construct<AttrSpec>("CODIMENSION" >> coarraySpec) ||
     construct<AttrSpec>(contiguous) ||
+    construct<AttrSpec>(construct<Device>("DEVICE"_tok)) ||
     construct<AttrSpec>("DIMENSION" >> arraySpec) ||
     construct<AttrSpec>(construct<External>("EXTERNAL"_tok)) ||
     construct<AttrSpec>("INTENT" >> parenthesized(intentSpec)) ||
     construct<AttrSpec>(construct<Intrinsic>("INTRINSIC"_tok)) ||
+    construct<AttrSpec>(construct<Managed>("MANAGED"_tok)) ||
     construct<AttrSpec>(languageBindingSpec) || construct<AttrSpec>(optional) ||
     construct<AttrSpec>(construct<Parameter>("PARAMETER"_tok)) ||
+    construct<AttrSpec>(construct<Pinned>("PINNED"_tok)) ||
     construct<AttrSpec>(pointer) || construct<AttrSpec>(protectedAttr) ||
     construct<AttrSpec>(save) ||
+    construct<AttrSpec>(construct<Shared>("SHARED"_tok)) ||
     construct<AttrSpec>(construct<Target>("TARGET"_tok)) ||
+    construct<AttrSpec>(construct<Texture>("TEXTURE"_tok)) ||
     construct<AttrSpec>(construct<Value>("VALUE"_tok)) ||
     construct<AttrSpec>(construct<Volatile>("VOLATILE"_tok)))
 
